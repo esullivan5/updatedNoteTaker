@@ -12,7 +12,8 @@
   "dependencies": {
     "express": "^4.17.1",
     "mysql": "^2.18.1",
-    "require": "^2.4.20"
+    "require": "^2.4.20",
+    "uuid": "^8.0.0"
   },
   "devDependencies": {},
   "repository": {

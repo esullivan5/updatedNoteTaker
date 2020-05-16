@@ -1,5 +1,5 @@
 //dependencies
-const Store = require("../js/Store.js");
+const Store = require("../db/store.js");
 //express handling routes
 const router = require("express").Router();
 
@@ -19,26 +19,8 @@ const router = require("express").Router();
   // })//add async to get res.json from above;
 
   router.get("/notes", function(req, res) {
-    //return all saved notes as JSON
-    console.log(data);
-    //TODO set up store
-    //call store
-    // const savedNotes = new Store().listNote();
-    // const savedNotes = Store.listNote();
-    // let stringyNotes = JSON.stringify(notes);
-     console.log(savedNotes);sc
-     console.log(`Getting notes: ${savedNotes}`);
-    // res.json(savedNotes);
-  })//add async to get res.json from above;
-
-  //API POST requests
-  router.post("/notes", function(req, res) {
-    //TODO receive new note to save on the request body, add it to db.json, then return new note to client
-    const newNote = req.body;
-
-    new Store().saveNote(newNote);
-    console.log(`getting new note: ${newNote}`);
-    res.json(newNote);
+    Store.listNote().then(notes => res.json(notes)).catch(error => res.status(500).json(error));
+    
   });
 
   //TODO delete note

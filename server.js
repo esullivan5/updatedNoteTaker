@@ -1,7 +1,7 @@
 //dependencies
 const express = require("express");
-const path = require("path");
-const fs = require("fs");
+const apiRoutes = require("./routes/apiRoutes");
+const htmlRoutes = require("./routes/htmlRoutes");
 const app = express();
 
 //set up initial port
@@ -12,11 +12,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 //Allows app to provide static files from dir
 app.use(express.static("public"));
-
-//routing
-const apiRoutes = require("./routes/apiRoutes");
 app.use("/api", apiRoutes);
-require("./routes/htmlRoutes")(app);
+app.use("/", htmlRoutes);
+//routing
 
 //start server listening
 app.listen(PORT, function() {
